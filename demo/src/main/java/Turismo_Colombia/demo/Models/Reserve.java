@@ -1,4 +1,4 @@
-package Turismo_Colombia.demo.Modelos;
+package Turismo_Colombia.demo.Models;
 
 import jakarta.persistence.*;
 
