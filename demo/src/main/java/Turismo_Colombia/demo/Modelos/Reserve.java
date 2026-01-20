@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "reservas")
-public class Reserva {
+public class Reserve {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,11 +12,11 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
-    private Cliente cliente;
+    private Clients clients;
 
     @ManyToOne
     @JoinColumn(name = "viaje_id", nullable = false)
-    private Viaje viaje;
+    private Trip trip;
 
     @Column(nullable = false)
     private Integer cantidadPersonas;
@@ -42,14 +42,14 @@ public class Reserva {
     @Column(nullable = false)
     private Boolean activa;
 
-    public Reserva() {}
+    public Reserve() {}
 
-    public Reserva(Long idReserva, Cliente cliente, Viaje viaje, Integer cantidadPersonas,
+    public Reserve(Long idReserva, Clients clients, Trip trip, Integer cantidadPersonas,
                    Double precioTotal, String estado, String metodoPago, String fechaReserva,
                    String fechaPago, String codigoReserva, Boolean activa) {
         this.idReserva = idReserva;
-        this.cliente = cliente;
-        this.viaje = viaje;
+        this.clients = clients;
+        this.trip = trip;
         this.cantidadPersonas = cantidadPersonas;
         this.precioTotal = precioTotal;
         this.estado = estado;
@@ -65,11 +65,11 @@ public class Reserva {
     public Long getIdReserva() { return idReserva; }
     public void setIdReserva(Long idReserva) { this.idReserva = idReserva; }
 
-    public Cliente getCliente() { return cliente; }
-    public void setCliente(Cliente cliente) { this.cliente = cliente; }
+    public Clients getCliente() { return clients; }
+    public void setCliente(Clients clients) { this.clients = clients; }
 
-    public Viaje getViaje() { return viaje; }
-    public void setViaje(Viaje viaje) { this.viaje = viaje; }
+    public Trip getViaje() { return trip; }
+    public void setViaje(Trip trip) { this.trip = trip; }
 
     public Integer getCantidadPersonas() { return cantidadPersonas; }
     public void setCantidadPersonas(Integer cantidadPersonas) { this.cantidadPersonas = cantidadPersonas; }
