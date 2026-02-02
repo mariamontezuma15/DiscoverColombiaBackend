@@ -11,11 +11,11 @@ public class Reserve {
     private Long idReserva;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private Clients clients;
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
 
     @ManyToOne
-    @JoinColumn(name = "viaje_id", nullable = false)
+    @JoinColumn(name = "trip_id", nullable = false)
     private Trip trip;
 
     @Column(nullable = false)
@@ -44,11 +44,11 @@ public class Reserve {
 
     public Reserve() {}
 
-    public Reserve(Long idReserva, Clients clients, Trip trip, Integer cantidadPersonas,
+    public Reserve(Long idReserva, Client client, Trip trip, Integer cantidadPersonas,
                    Double precioTotal, String estado, String metodoPago, String fechaReserva,
                    String fechaPago, String codigoReserva, Boolean activa) {
         this.idReserva = idReserva;
-        this.clients = clients;
+        this.client = client;
         this.trip = trip;
         this.cantidadPersonas = cantidadPersonas;
         this.precioTotal = precioTotal;
@@ -65,8 +65,8 @@ public class Reserve {
     public Long getIdReserva() { return idReserva; }
     public void setIdReserva(Long idReserva) { this.idReserva = idReserva; }
 
-    public Clients getCliente() { return clients; }
-    public void setCliente(Clients clients) { this.clients = clients; }
+    public Client getCliente() { return client; }
+    public void setCliente(Client client) { this.client = client; }
 
     public Trip getViaje() { return trip; }
     public void setViaje(Trip trip) { this.trip = trip; }

@@ -1,6 +1,6 @@
 package Turismo_Colombia.demo.Servicios;
 
-import Turismo_Colombia.demo.Modelos.Cliente;
+import Turismo_Colombia.demo.Modelos.Client;
 import Turismo_Colombia.demo.Repositorios.IClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,32 +14,32 @@ public class ServiceCliente {
     @Autowired
     private IClienteRepository clienteRepository;
 
-    public Cliente createCliente(Cliente cliente) {
+    public Client createCliente(Client cliente) {
         return clienteRepository.save(cliente);
     }
 
-    public List<Cliente> findAllClientes() {
+    public List<Client> findAllClientes() {
         return clienteRepository.findAll();
     }
 
-    public Cliente findClienteById(int id) {
+    public Client findClienteById(int id) {
         return clienteRepository.findById(id).orElse(null);
     }
 
-    public Cliente updateCliente(Integer id, Cliente updatedCliente) {
-        Optional<Cliente> optionalCliente = clienteRepository.findById(id);
+    public Client updateCliente(Integer id, Client updatedCliente) {
+        Optional<Client> optionalCliente = clienteRepository.findById(id);
 
         if (optionalCliente.isPresent()) {
-            Cliente existingCliente = optionalCliente.get();
-            existingCliente.setNombre(updatedCliente.getNombre());
-            existingCliente.setApellido(updatedCliente.getApellido());
+            Client existingCliente = optionalCliente.get();
+            existingCliente.setName(updatedCliente.getName());
+            existingCliente.setLastName(updatedCliente.getLastName());
             existingCliente.setEmail(updatedCliente.getEmail());
-            existingCliente.setTelefono(updatedCliente.getTelefono());
-            existingCliente.setCiudad(updatedCliente.getCiudad());
-            existingCliente.setDocumento(updatedCliente.getDocumento());
-            existingCliente.setEstado(updatedCliente.getEstado());
+            existingCliente.setPhone(updatedCliente.getPhone());
+            existingCliente.setCity(updatedCliente.getCity());
+            existingCliente.setDocument(updatedCliente.getDocument());
+            existingCliente.setStatus(updatedCliente.getStatus());
             existingCliente.setPassword(updatedCliente.getPassword());
-            existingCliente.setPais(updatedCliente.getPais());
+            existingCliente.setCountry(updatedCliente.getCountry());
             existingCliente.setRol(updatedCliente.getRol());
             return clienteRepository.save(existingCliente);
         }

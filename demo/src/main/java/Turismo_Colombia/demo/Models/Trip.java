@@ -1,9 +1,11 @@
 package Turismo_Colombia.demo.Models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "viajes")
+@Table(name = "trip")
 public class Trip {
 
     @Id
@@ -12,86 +14,142 @@ public class Trip {
 
     @Column(length = 80, nullable = false)
     private String title;
-
     @Column(length = 50, nullable = false)
     private String destination;
-
     @Column(length = 200, nullable = false)
     private String description;
-
     @Column(nullable = false)
     private Double price;
-
     @Column(nullable = false)
     private Integer availableSpots;
-
     @Column(nullable = false)
     private Integer Days;
-
     @Column(length = 30, nullable = false)
     private String type;   // Playa, Cultural, Aventura
-
     @Column(length = 150, nullable = false)
     private String ImageUrl;
-
     @Column(length = 30, nullable = false)
     private String cityDeparture;
-
     @Column(nullable = false)
     private Boolean active;
 
-    @OneToMany(mappedBy = "viaje", cascade = CascadeType.ALL)
+    
+    @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private java.util.List<Reserve> Reserves;
 
     public Trip() {}
 
-    public Trip(Long idViaje, String titulo, String destino, String descripcion, Double precio,
-                Integer cuposDisponibles, Integer duracionDias, String tipo, String imagenUrl,
-                String ciudadSalida, Boolean activo) {
+    public Trip(Long idViaje, String title, String destination, String description, Double price,
+            Integer availableSpots, Integer days, String type, String imageUrl, String cityDeparture, Boolean active,
+            List<Reserve> reserves) {
         this.idViaje = idViaje;
-        this.title = titulo;
-        this.destination = destino;
-        this.description = descripcion;
-        this.price = precio;
-        this.availableSpots = cuposDisponibles;
-        this.Days = duracionDias;
-        this.type = tipo;
-        this.ImageUrl = imagenUrl;
-        this.cityDeparture = ciudadSalida;
-        this.active = activo;
+        this.title = title;
+        this.destination = destination;
+        this.description = description;
+        this.price = price;
+        this.availableSpots = availableSpots;
+        Days = days;
+        this.type = type;
+        ImageUrl = imageUrl;
+        this.cityDeparture = cityDeparture;
+        this.active = active;
+        Reserves = reserves;
     }
 
+    public Long getIdViaje() {
+        return idViaje;
+    }
 
-    public Long getIdViaje() { return idViaje; }
-    public void setIdViaje(Long idViaje) { this.idViaje = idViaje; }
+    public void setIdViaje(Long idViaje) {
+        this.idViaje = idViaje;
+    }
 
-    public String getTitulo() { return title; }
-    public void setTitulo(String titulo) { this.title = titulo; }
+    public String getTitle() {
+        return title;
+    }
 
-    public String getDestino() { return destination; }
-    public void setDestino(String destino) { this.destination = destino; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public String getDescripcion() { return description; }
-    public void setDescripcion(String descripcion) { this.description = descripcion; }
+    public String getDestination() {
+        return destination;
+    }
 
-    public Double getPrecio() { return price; }
-    public void setPrecio(Double precio) { this.price = precio; }
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
 
-    public Integer getCuposDisponibles() { return availableSpots ; }
-    public void setCuposDisponibles(Integer cuposDisponibles) { this.availableSpots = cuposDisponibles; }
+    public String getDescription() {
+        return description;
+    }
 
-    public Integer getDuracionDias() { return Days; }
-    public void setDuracionDias(Integer duracionDias) { this.Days = duracionDias; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public String getTipo() { return type; }
-    public void setTipo(String tipo) { this.type = tipo; }
+    public Double getPrice() {
+        return price;
+    }
 
-    public String getImagenUrl() { return ImageUrl; }
-    public void setImagenUrl(String imagenUrl) { this.ImageUrl = imagenUrl; }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
-    public String getCiudadSalida() { return cityDeparture; }
-    public void setCiudadSalida(String ciudadSalida) { this.cityDeparture = ciudadSalida; }
+    public Integer getAvailableSpots() {
+        return availableSpots;
+    }
 
-    public Boolean getActivo() { return active; }
-    public void setActivo(Boolean activo) { this.active = activo; }
+    public void setAvailableSpots(Integer availableSpots) {
+        this.availableSpots = availableSpots;
+    }
+
+    public Integer getDays() {
+        return Days;
+    }
+
+    public void setDays(Integer days) {
+        Days = days;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getImageUrl() {
+        return ImageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
+    }
+
+    public String getCityDeparture() {
+        return cityDeparture;
+    }
+
+    public void setCityDeparture(String cityDeparture) {
+        this.cityDeparture = cityDeparture;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public java.util.List<Reserve> getReserves() {
+        return Reserves;
+    }
+
+    public void setReserves(java.util.List<Reserve> reserves) {
+        Reserves = reserves;
+    }
+    
 }

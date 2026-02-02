@@ -1,6 +1,6 @@
 package Turismo_Colombia.demo.Servicios;
 
-import Turismo_Colombia.demo.Modelos.Reserva;
+import Turismo_Colombia.demo.Modelos.Reserve;
 import Turismo_Colombia.demo.Repositorios.IReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,23 +14,23 @@ public class ServiceReserva {
     @Autowired
     private IReservaRepository reservaRepository;
 
-    public Reserva createReserva(Reserva reserva){
+    public Reserve createReserva(Reserve reserva){
         return reservaRepository.save(reserva);
     }
 
-    public List<Reserva> findAllReservas(){
+    public List<Reserve> findAllReservas(){
         return reservaRepository.findAll();
     }
 
-    public Reserva findReservaById(Integer id){
+    public Reserve findReservaById(Integer id){
         return reservaRepository.findById(id).orElse(null);
     }
 
-    public Reserva updateReserva(Integer id, Reserva updatedReserva){
-        Optional<Reserva> optionalReserva = reservaRepository.findById(id);
+    public Reserve updateReserva(Integer id, Reserve updatedReserva){
+        Optional<Reserve> optionalReserva = reservaRepository.findById(id);
 
         if (optionalReserva.isPresent()){
-            Reserva existingReserva = optionalReserva.get();
+            Reserve existingReserva = optionalReserva.get();
             existingReserva.setCodigoReserva(updatedReserva.getCodigoReserva());
             existingReserva.setFechaReserva(updatedReserva.getFechaReserva());
             existingReserva.setEstado(updatedReserva.getEstado());
@@ -47,7 +47,7 @@ public class ServiceReserva {
     }
 
     public boolean deleteReserva(Integer id){
-        Optional<Reserva> optionalReserva = reservaRepository.findById(id);
+        Optional<Reserve> optionalReserva = reservaRepository.findById(id);
         if (optionalReserva.isPresent()){
             reservaRepository.delete(optionalReserva.get());
             return true;

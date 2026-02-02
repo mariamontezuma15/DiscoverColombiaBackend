@@ -1,6 +1,7 @@
 package Turismo_Colombia.demo.Servicios;
 
-import Turismo_Colombia.demo.Modelos.Viaje;
+
+import Turismo_Colombia.demo.Models.Trip;
 import Turismo_Colombia.demo.Repositorios.IViajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,40 +15,40 @@ public class ServiceViaje {
     @Autowired
     private IViajeRepository viajeRepository;
 
-    public Viaje createViaje(Viaje Viaje){
+    public Trip createViaje(Trip Viaje){
         return viajeRepository.save(Viaje);
     }
 
-    public List<Viaje> findAllViajes(){
+    public List<Trip> findAllViajes(){
         return viajeRepository.findAll();
     }
 
-    public Viaje findViajeById(Integer id){
+    public Trip findViajeById(Integer id){
         return viajeRepository.findById(id).orElse(null);
     }
 
-    public Viaje updateViaje(Integer id, Viaje updatedViaje){
-        Optional<Viaje> optionalViaje = viajeRepository.findById(id);
+    public Trip updateViaje(Integer id, Trip updatedViaje){
+        Optional<Trip> optionalViaje = viajeRepository.findById(id);
 
         if (optionalViaje.isPresent()){
-            Viaje existingViaje = optionalViaje.get();
-            existingViaje.setActivo(updatedViaje.getActivo());
-            existingViaje.setCiudadSalida(updatedViaje.getCiudadSalida());
-            existingViaje.setDestino(updatedViaje.getDestino());
-            existingViaje.setDescripcion(updatedViaje.getDescripcion());
-            existingViaje.setCuposDisponibles(updatedViaje.getCuposDisponibles());
-            existingViaje.setDuracionDias(updatedViaje.getDuracionDias());
-            existingViaje.setImagenUrl(updatedViaje.getImagenUrl());
-            existingViaje.setPrecio(updatedViaje.getPrecio());
-            existingViaje.setTipo(updatedViaje.getTipo());
-            existingViaje.setTitulo(updatedViaje.getTitulo());
+            Trip existingViaje = optionalViaje.get();
+            existingViaje.setActive(updatedViaje.getActive());
+            existingViaje.setCityDeparture(updatedViaje.getCityDeparture());
+            existingViaje.setDestination(updatedViaje.getDestination());
+            existingViaje.setDescription(updatedViaje.getDescription());
+            existingViaje.setAvailableSpots(updatedViaje.getAvailableSpots());
+            existingViaje.setDays(updatedViaje.getDays());
+            existingViaje.setImageUrl(updatedViaje.getImageUrl());
+            existingViaje.setPrice(updatedViaje.getPrice());
+            existingViaje.setType(updatedViaje.getType());
+            existingViaje.setTitle(updatedViaje.getTitle());
             return  viajeRepository.save(existingViaje);
         }
         return null;
     }
 
     public boolean deleteViaje(Integer id){
-        Optional<Viaje> optionalViaje = viajeRepository.findById(id);
+        Optional<Trip> optionalViaje = viajeRepository.findById(id);
         if (optionalViaje.isPresent()){
             viajeRepository.delete(optionalViaje.get());
             return true;
