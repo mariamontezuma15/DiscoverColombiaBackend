@@ -1,6 +1,5 @@
 package Turismo_Colombia.demo.Servicios;
 
-
 import Turismo_Colombia.demo.Models.Trip;
 import Turismo_Colombia.demo.Repositorios.IViajeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +22,11 @@ public class ServiceViaje {
         return viajeRepository.findAll();
     }
 
-    public Trip findViajeById(Integer id){
+    public Trip findViajeById(Long id){
         return viajeRepository.findById(id).orElse(null);
     }
 
-    public Trip updateViaje(Integer id, Trip updatedViaje){
+    public Trip updateViaje(Long id, Trip updatedViaje){
         Optional<Trip> optionalViaje = viajeRepository.findById(id);
 
         if (optionalViaje.isPresent()){
@@ -47,7 +46,7 @@ public class ServiceViaje {
         return null;
     }
 
-    public boolean deleteViaje(Integer id){
+    public boolean deleteViaje(Long id){
         Optional<Trip> optionalViaje = viajeRepository.findById(id);
         if (optionalViaje.isPresent()){
             viajeRepository.delete(optionalViaje.get());

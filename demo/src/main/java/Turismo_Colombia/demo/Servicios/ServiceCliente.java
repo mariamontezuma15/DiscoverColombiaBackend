@@ -1,6 +1,6 @@
 package Turismo_Colombia.demo.Servicios;
 
-import Turismo_Colombia.demo.Modelos.Client;
+import Turismo_Colombia.demo.Models.Client;
 import Turismo_Colombia.demo.Repositorios.IClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,11 @@ public class ServiceCliente {
         return clienteRepository.findAll();
     }
 
-    public Client findClienteById(int id) {
+    public Client findClienteById(Long id) {
         return clienteRepository.findById(id).orElse(null);
     }
 
-    public Client updateCliente(Integer id, Client updatedCliente) {
+    public Client updateCliente(Long id, Client updatedCliente) {
         Optional<Client> optionalCliente = clienteRepository.findById(id);
 
         if (optionalCliente.isPresent()) {
@@ -46,7 +46,7 @@ public class ServiceCliente {
         return null;
     }
 
-    public boolean deleteCliente(Integer id) {
+    public boolean deleteCliente(Long id) {
         if (clienteRepository.existsById(id)) {
             clienteRepository.deleteById(id);
             return true;

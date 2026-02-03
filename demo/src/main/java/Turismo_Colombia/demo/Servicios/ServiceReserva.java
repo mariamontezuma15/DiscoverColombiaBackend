@@ -1,6 +1,6 @@
 package Turismo_Colombia.demo.Servicios;
 
-import Turismo_Colombia.demo.Modelos.Reserve;
+import Turismo_Colombia.demo.Models.Reserve;
 import Turismo_Colombia.demo.Repositorios.IReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,11 @@ public class ServiceReserva {
         return reservaRepository.findAll();
     }
 
-    public Reserve findReservaById(Integer id){
+    public Reserve findReservaById(Long id){
         return reservaRepository.findById(id).orElse(null);
     }
 
-    public Reserve updateReserva(Integer id, Reserve updatedReserva){
+    public Reserve updateReserva(Long id, Reserve updatedReserva){
         Optional<Reserve> optionalReserva = reservaRepository.findById(id);
 
         if (optionalReserva.isPresent()){
@@ -46,7 +46,7 @@ public class ServiceReserva {
         return null;
     }
 
-    public boolean deleteReserva(Integer id){
+    public boolean deleteReserva(Long id){
         Optional<Reserve> optionalReserva = reservaRepository.findById(id);
         if (optionalReserva.isPresent()){
             reservaRepository.delete(optionalReserva.get());
