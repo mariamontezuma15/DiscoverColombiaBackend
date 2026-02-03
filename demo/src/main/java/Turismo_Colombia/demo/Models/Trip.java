@@ -10,7 +10,7 @@ public class Trip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idViaje;
+    private Long idTrip;
 
     @Column(length = 80, nullable = false)
     private String title;
@@ -33,16 +33,15 @@ public class Trip {
     @Column(nullable = false)
     private Boolean active;
 
-    
+
     @OneToMany(mappedBy = "trip", cascade = CascadeType.ALL)
     private java.util.List<Reserve> Reserves;
 
-    public Trip() {}
+    public Trip() {
+    }
 
-    public Trip(Long idViaje, String title, String destination, String description, Double price,
-            Integer availableSpots, Integer days, String type, String imageUrl, String cityDeparture, Boolean active,
-            List<Reserve> reserves) {
-        this.idViaje = idViaje;
+    public Trip(Long idTrip, String title, String destination, String description, Double price, Integer availableSpots, Integer days, String type, String imageUrl, String cityDeparture, Boolean active, List<Reserve> reserves) {
+        this.idTrip = idTrip;
         this.title = title;
         this.destination = destination;
         this.description = description;
@@ -56,12 +55,12 @@ public class Trip {
         Reserves = reserves;
     }
 
-    public Long getIdViaje() {
-        return idViaje;
+    public Long getIdTrip() {
+        return idTrip;
     }
 
-    public void setIdViaje(Long idViaje) {
-        this.idViaje = idViaje;
+    public void setIdTrip(Long idTrip) {
+        this.idTrip = idTrip;
     }
 
     public String getTitle() {
@@ -151,5 +150,5 @@ public class Trip {
     public void setReserves(java.util.List<Reserve> reserves) {
         Reserves = reserves;
     }
-    
+
 }

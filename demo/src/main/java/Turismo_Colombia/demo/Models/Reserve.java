@@ -8,7 +8,7 @@ public class Reserve {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idReserva;
+    private Long idReserve;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
@@ -19,79 +19,79 @@ public class Reserve {
     private Trip trip;
 
     @Column(nullable = false)
-    private Integer cantidadPersonas;
+    private Integer peopleAmmount;
 
     @Column(nullable = false)
-    private Double precioTotal;
+    private Double totalPrice;
 
     @Column(length = 30, nullable = false)
-    private String estado;   // PENDIENTE, PAGADO, CANCELADO
+    private String status;   // PENDIENTE, PAGADO, CANCELADO
 
     @Column(length = 30, nullable = false)
-    private String metodoPago;
+    private String paymentMethod;
 
     @Column(length = 30, nullable = false)
-    private String fechaReserva;
+    private String reservationDate;
 
     @Column(length = 30)
-    private String fechaPago;
+    private String paymentDate;
 
     @Column(length = 50, nullable = false)
-    private String codigoReserva;
+    private String reservationCode;
 
     @Column(nullable = false)
-    private Boolean activa;
+    private Boolean active;
 
     public Reserve() {}
 
-    public Reserve(Long idReserva, Client client, Trip trip, Integer cantidadPersonas,
-                   Double precioTotal, String estado, String metodoPago, String fechaReserva,
-                   String fechaPago, String codigoReserva, Boolean activa) {
-        this.idReserva = idReserva;
+    public Reserve(Long idReserve, Client client, Trip trip, Integer peopleAmmount,
+                   Double totalPrice, String status, String paymentMethod, String reservationDate,
+                   String paymentDate, String reservationCode, Boolean active) {
+        this.idReserve = idReserve;
         this.client = client;
         this.trip = trip;
-        this.cantidadPersonas = cantidadPersonas;
-        this.precioTotal = precioTotal;
-        this.estado = estado;
-        this.metodoPago = metodoPago;
-        this.fechaReserva = fechaReserva;
-        this.fechaPago = fechaPago;
-        this.codigoReserva = codigoReserva;
-        this.activa = activa;
+        this.peopleAmmount = peopleAmmount;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.paymentMethod = paymentMethod;
+        this.reservationDate = reservationDate;
+        this.paymentDate = paymentDate;
+        this.reservationCode = reservationCode;
+        this.active = active;
     }
 
     // Getters y Setters
 
-    public Long getIdReserva() { return idReserva; }
-    public void setIdReserva(Long idReserva) { this.idReserva = idReserva; }
+    public Long getidReserve() { return idReserve; }
+    public void setidReserve(Long idReserve) { this.idReserve = idReserve; }
 
-    public Client getCliente() { return client; }
-    public void setCliente(Client client) { this.client = client; }
+    public Client getClient() { return client; }
+    public void setClient(Client client) { this.client = client; }
 
-    public Trip getViaje() { return trip; }
-    public void setViaje(Trip trip) { this.trip = trip; }
+    public Trip getTrip() { return trip; }
+    public void setTrip(Trip trip) { this.trip = trip; }
 
-    public Integer getCantidadPersonas() { return cantidadPersonas; }
-    public void setCantidadPersonas(Integer cantidadPersonas) { this.cantidadPersonas = cantidadPersonas; }
+    public Integer getPeopleAmmount() { return peopleAmmount; }
+    public void setPeopleAmmount(Integer peopleAmmount) { this.peopleAmmount = peopleAmmount; }
 
-    public Double getPrecioTotal() { return precioTotal; }
-    public void setPrecioTotal(Double precioTotal) { this.precioTotal = precioTotal; }
+    public Double getTotalPrice() { return totalPrice; }
+    public void setTotalPrice(Double totalPrice) { this.totalPrice = totalPrice; }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public String getMetodoPago() { return metodoPago; }
-    public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
+    public String getPaymentMethod() { return paymentMethod; }
+    public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
 
-    public String getFechaReserva() { return fechaReserva; }
-    public void setFechaReserva(String fechaReserva) { this.fechaReserva = fechaReserva; }
+    public String getReservationDate() { return reservationDate; }
+    public void setReservationDate(String reservationDate) { this.reservationDate = reservationDate; }
 
-    public String getFechaPago() { return fechaPago; }
-    public void setFechaPago(String fechaPago) { this.fechaPago = fechaPago; }
+    public String getPaymentDate() { return paymentDate; }
+    public void setPaymentDate(String paymentDate) { this.paymentDate = paymentDate; }
 
-    public String getCodigoReserva() { return codigoReserva; }
-    public void setCodigoReserva(String codigoReserva) { this.codigoReserva = codigoReserva; }
+    public String getReservationCode() { return reservationCode; }
+    public void setReservationCode(String reservationCode) { this.reservationCode = reservationCode; }
 
-    public Boolean getActiva() { return activa; }
-    public void setActiva(Boolean activa) { this.activa = activa; }
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
 }

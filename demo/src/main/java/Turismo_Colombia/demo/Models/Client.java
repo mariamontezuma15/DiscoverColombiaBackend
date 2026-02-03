@@ -1,7 +1,5 @@
 package Turismo_Colombia.demo.Models;
 
-import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -12,35 +10,32 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idClient;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String name;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String lastName;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String phone;
-    @Column(length = 80, nullable = false)
+    @Column(length = 80)
     private String email;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String city;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String country;
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String document;
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String rol;   // CLIENTE / ADMIN
-    @Column(nullable = false)
+    @Column
     private Boolean status;
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private java.util.List<Reserve> Reserves;
-
-    public Client() {}
+    public Client() {
+    }
 
     public Client(Long idClient, String name, String lastName, String phone, String email, String city, String country,
-            String document, String rol, Boolean status, String password, List<Reserve> reserves) {
+                  String document, String rol, Boolean status, String password) {
         this.idClient = idClient;
         this.name = name;
         this.lastName = lastName;
@@ -52,7 +47,6 @@ public class Client {
         this.rol = rol;
         this.status = status;
         this.password = password;
-        Reserves = reserves;
     }
 
     public Long getIdClients() {
@@ -142,14 +136,4 @@ public class Client {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public java.util.List<Reserve> getReserves() {
-        return Reserves;
-    }
-
-    public void setReserves(java.util.List<Reserve> reserves) {
-        Reserves = reserves;
-    }
-
-  
 }
