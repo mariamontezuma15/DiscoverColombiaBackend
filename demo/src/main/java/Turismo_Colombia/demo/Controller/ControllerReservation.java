@@ -30,12 +30,12 @@ public class ControllerReservation {
 
     @Autowired
     ServiceReserve service;
-    
+
     @PostMapping
     @Operation(summary = "Create a new reservation", description = "Creates a new reservation with the provided information")
     @ApiResponse(responseCode = "201", description = "Reservation created successfully", content = @Content(schema = @Schema(implementation = Reserve.class)))
     @ApiResponse(responseCode = "400", description = "Invalid reservation data")
-    public ResponseEntity <Reserve> createReserva(@RequestBody Reserve data){
+    public ResponseEntity<Reserve> createReserva(@RequestBody Reserve data) {
         Reserve responsReserve = this.service.createReserve(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(responsReserve);
     }
@@ -43,17 +43,16 @@ public class ControllerReservation {
     @GetMapping
     @Operation(summary = "Get all reservations", description = "Retrieves a list of all registered reservations")
     @ApiResponse(responseCode = "200", description = "List of reservations retrieved successfully", content = @Content(schema = @Schema(implementation = Reserve.class)))
-    public ResponseEntity <List<Reserve>>findAllReservas(){
+    public ResponseEntity<List<Reserve>> findAllReservas() {
         return ResponseEntity.status(HttpStatus.OK).body(this.service.findAllReservations());
     }
 
-    @GetMapping(value ="/{id}")
+    @GetMapping(value = "/{id}")
     @Operation(summary = "Get reservation by ID", description = "Retrieves a specific reservation by its ID")
     @ApiResponse(responseCode = "200", description = "Reservation found and retrieved successfully", content = @Content(schema = @Schema(implementation = Reserve.class)))
     @ApiResponse(responseCode = "404", description = "Reservation not found")
-    public ResponseEntity <Reserve> findReservaById(
-            @Parameter(description = "Reservation ID", required = true)
-            @PathVariable Long id){
+    public ResponseEntity<Reserve> findReservaById(
+            @Parameter(description = "Reservation ID", required = true) @PathVariable Long id) {
         Reserve reserve = this.service.findReserveById(id);
         if (reserve == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -61,28 +60,26 @@ public class ControllerReservation {
         return ResponseEntity.status(HttpStatus.OK).body(reserve);
     }
 
-    @PutMapping(value ="/{id}")
+    @PutMapping(value = "/{id}")
     @Operation(summary = "Update reservation", description = "Updates an existing reservation with the provided information")
     @ApiResponse(responseCode = "200", description = "Reservation updated successfully", content = @Content(schema = @Schema(implementation = Reserve.class)))
     @ApiResponse(responseCode = "404", description = "Reservation not found")
-    public ResponseEntity <Reserve> updateReserva(
-            @Parameter(description = "Reservation ID", required = true)
-            @PathVariable Long id, 
-            @RequestBody Reserve data){
+    public ResponseEntity<Reserve> updateReserva(
+            @Parameter(description = "Reservation ID", required = true) @PathVariable Long id,
+            @RequestBody Reserve data) {
         Reserve responsReserve = this.service.updateReserve(id, data);
         if (responsReserve == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.status(HttpStatus.OK).body(responsReserve);
     }
-
-    @DeleteMapping(value ="/{id}")
+    //mafe
+    @DeleteMapping(value = "/{id}")
     @Operation(summary = "Delete reservation", description = "Deletes a reservation by its ID")
     @ApiResponse(responseCode = "200", description = "Reservation deleted successfully")
     @ApiResponse(responseCode = "404", description = "Reservation not found")
-    public ResponseEntity <Boolean> deleteReserva(
-            @Parameter(description = "Reservation ID", required = true)
-            @PathVariable Long id){
+    public ResponseEntity<Boolean> deleteReserva(
+            @Parameter(description = "Reservation ID", required = true) @PathVariable Long id) {
         boolean isDeleted = this.service.deleteReserve(id);
         if (!isDeleted) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
